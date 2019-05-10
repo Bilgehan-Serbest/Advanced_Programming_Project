@@ -1,4 +1,4 @@
-package com.airline.controllers;
+package com.library.controllers;
 
 import java.io.IOException;
 
@@ -9,23 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.airline.models.PILOT;
-import com.airline.models.PilotRank;
-import com.airline.service.PilotService;
+import com.library.service.LibraryService;
 
 /**
- * Servlet implementation class CreatePilotAndAddToFlight
+ * Servlet implementation class RegisterMemberToLibrary
  */
-@WebServlet("/CreatePilotAndAddToFlight")
-public class CreatePilotAndAddToFlight extends HttpServlet {
+@WebServlet("/RegisterMemberToLibrary")
+public class RegisterMemberToLibrary extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	@EJB
-	PilotService ps;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreatePilotAndAddToFlight() {
+	
+	@EJB
+	LibraryService ls;
+	
+    public RegisterMemberToLibrary() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,31 +34,23 @@ public class CreatePilotAndAddToFlight extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String memberId = request.getParameter("member_id");
+		String libraryId = request.getParameter("library_id");
 		
-		String fName = request.getParameter("first_name");
-		String lName = request.getParameter("last_name");
-		Integer license = Integer.parseInt(request.getParameter("license"));
-		String rank = request.getParameter("pilot_rank");
+		ls.addMemberToLibrary(memberId, libraryId);
+
+		response.sendRedirect("Libraries");
 		
-		String flightId = request.getParameter("fid");
 		
-		PILOT p = new PILOT();
 		
-		p.setFIRSTNAME(fName);
-		p.setLASTNAME(lName);
-		p.setPILOTLICENSE(license);
-		p.setPILOTRANK(PilotRank.valueOf(rank));
-		
-		ps.addNewPilotToFlight(p, flightId);
-		
-		response.sendRedirect("Flights");		
 	}
 
 }

@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.library.models.Book;
-import com.library.models.JoinColumn;
 import com.library.models.Library;
-import com.library.models.ManyToOne;
+import com.library.service.LibraryService;
+
 
 /**
  * Servlet implementation class AddPassenger
@@ -24,7 +24,7 @@ public class AddBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	BookService bs;
+	LibraryService ls;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -56,11 +56,10 @@ public class AddBook extends HttpServlet {
 		b.setAuthor(author);
 		b.setPublisher(publisher);
 		
-		bs.addLibrarianToLibrary(b.getId().toString(), libraryId);
+		ls.addBookToLibrary(b.getId().toString(), libraryId);
 		
 		System.out.println(b);
-		
-		bs.addMember(b);
+			
 		
 		response.sendRedirect("Books");
 	}

@@ -15,9 +15,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.airline.models.AIRPLANE;
-import com.airline.models.PASSENGER;
-import com.airline.models.PILOT;
 
 @NamedQuery(name = "Library.findById", query="SELECT l FROM Library l WHERE l.id =:id")
 @Entity

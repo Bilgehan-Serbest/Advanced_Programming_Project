@@ -1,4 +1,4 @@
-package com.airline.controllers;
+package com.library.controllers;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class FancyForms
  */
-@WebServlet("/airlineforms")
+@WebServlet("/libraryform")
 public class FancyForms extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,7 +28,6 @@ public class FancyForms extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/fancy_forms.jsp");
 		
 		view.forward(request, response);

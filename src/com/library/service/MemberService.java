@@ -12,8 +12,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import com.airline.models.FLIGHT;
-import com.airline.models.PASSENGER;
 import com.library.models.Book;
 import com.library.models.Librarian;
 import com.library.models.Library;

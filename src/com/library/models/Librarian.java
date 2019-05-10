@@ -10,8 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
-import com.airline.models.FLIGHT;
-
 @NamedQuery(name="Librarian.findById", query="SELECT l FROM Librarian l WHERE l.id = :id")
 @Entity
 public class Librarian implements Serializable{

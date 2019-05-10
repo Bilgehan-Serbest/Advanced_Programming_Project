@@ -44,9 +44,9 @@ public class AddMember extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String fName = request.getParameter("first_name");
-		String lName = request.getParameter("last_name");
-		String dob_raw = request.getParameter("dob");
+		String fName = request.getParameter("memberFirstName");
+		String lName = request.getParameter("memberLastName");
+		String dob_raw = request.getParameter("memberDob");
 		String gender = request.getParameter("gender");		
 		
 		Member m = new Member();
@@ -72,7 +72,8 @@ public class AddMember extends HttpServlet {
 		System.out.println(m);
 		
 		ms.addMember(m);
-		
+				
+		request.setCharacterEncoding("UTF-8");
 		response.sendRedirect("Members");
 	}
 

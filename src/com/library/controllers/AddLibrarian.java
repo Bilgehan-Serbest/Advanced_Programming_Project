@@ -14,20 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.library.models.Gender;
 import com.library.models.Librarian;
 import com.library.models.Member;
-import com.library.service.LibrarianService;
+import com.library.service.LibraryService;
 
 /**
  * Servlet implementation class AddPilot
  */
 @WebServlet("/AddLibarian")
-public class AddLibarian extends HttpServlet {
+public class AddLibrarian extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@EJB
-	LibrarianService ls;
+	LibraryService ls;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddLibarian() {
+    public AddLibrarian() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,11 +36,11 @@ public class AddLibarian extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Librarian l = new Librarian();
-		l.setFirstName("Griselda");
-		l.setLastName("Cavendish");
-		
-		ls.addLibrarian(l);
+//		Librarian l = new Librarian();
+//		l.setFirstName("Griselda");
+//		l.setLastName("Cavendish");
+//		
+//		ls.addLibrarianToLibrary(l);
 		
 	}
 
@@ -64,8 +64,6 @@ public class AddLibarian extends HttpServlet {
 		//p.setFLIGHTCLASS(FlightClass.Coach);
 		
 		System.out.println(l);
-		
-		ls.addLibrarian(l);
 		
 		response.sendRedirect("Librarians");
 	}

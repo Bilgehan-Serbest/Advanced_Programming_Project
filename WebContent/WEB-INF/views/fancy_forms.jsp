@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<style>
 		body{			
@@ -62,9 +63,7 @@
 <body>
 <div class="jumbotron">
 	<h1>Library Management System</h1>
-
 	<hr/>		
-
 	<form method="POST" action="AddLibrary">		
 		<h2>Add New Library</h2>
 		<br/>
@@ -89,7 +88,7 @@
 		<button class="btn btn-secondary btn-sm" type="submit">Add Book to Library</button>		
 	</form>
 
-	<form method="POST" action="CreateMember"> 
+	<form method="POST" action="AddMember"> 
 		<h2>Create Member</h2>
 		<br/>
 		<input class="form-control" name="memberFirstName" type="text" placeholder="First Name"></input>

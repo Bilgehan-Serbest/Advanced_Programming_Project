@@ -1,4 +1,4 @@
-package com.airline.controllers;
+package com.library.controllers;
 
 import java.io.IOException;
 
@@ -9,22 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.airline.models.PILOT;
-import com.airline.models.PilotRank;
-import com.airline.service.PilotService;
+import com.library.service.MemberService;
 
 /**
- * Servlet implementation class AddPilot
+ * Servlet implementation class LendBookToMember
  */
-@WebServlet("/AddPilot")
-public class AddPilot extends HttpServlet {
+@WebServlet("/LendBookToMember")
+public class LendBookToMember extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
 	@EJB
-	PilotService ps;
+	MemberService ms;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddPilot() {
+    public LendBookToMember() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,23 +32,20 @@ public class AddPilot extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PILOT p = new PILOT();
-		p.setFIRSTNAME("Griselda");
-		p.setLASTNAME("Cavendish");
-		p.setPILOTRANK(PilotRank.Captain);
-		p.setPILOTLICENSE(178245);
-		
-		
-		ps.addPilot(p);
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String memberId = request.getParameter("member_id");
+		String bookId = request.getParameter("book_id");
+		
+		ms.lendBookToMember(bookId, memberId);
+		
+		response.sendRedirect("Members");
 	}
 
 }

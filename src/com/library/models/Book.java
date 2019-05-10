@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
-import com.airline.models.FLIGHT;
-
 @NamedQuery(name="Book.findById", query="SELECT b FROM Book b WHERE b.id = :id")
 @Entity
 public class Book implements Serializable{
