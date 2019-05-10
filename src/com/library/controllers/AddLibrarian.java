@@ -2,7 +2,6 @@ package com.library.controllers;
 
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.Calendar;
 
 import javax.ejb.EJB;
@@ -13,21 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.library.models.Gender;
+import com.library.models.Librarian;
 import com.library.models.Member;
-import com.library.service.MemberService;
+import com.library.service.LibrarianService;
+
 /**
- * Servlet implementation class AddPassenger
+ * Servlet implementation class AddPilot
  */
-@WebServlet("/AddMember")
-public class AddMember extends HttpServlet {
+@WebServlet("/AddLibarian")
+public class AddLibarian extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 	@EJB
-	MemberService ms;
+	LibrarianService ls;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddMember() {
+    public AddLibarian() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,11 @@ public class AddMember extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Librarian l = new Librarian();
+		l.setFirstName("Griselda");
+		l.setLastName("Cavendish");
 		
+		ls.addLibrarian(l);
 		
 	}
 
@@ -44,36 +48,26 @@ public class AddMember extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//doGet(request, response);
 		String fName = request.getParameter("first_name");
 		String lName = request.getParameter("last_name");
-		String dob_raw = request.getParameter("dob");
-		String gender = request.getParameter("gender");		
+		String lId = request.getParameter("library_id");
 		
-		Member m = new Member();
+		Librarian l = new Librarian();
 		
-		m.setFirstName(fName);
-		m.setLastName(lName);
+		l.setFirstName(fName);
+		l.setLastName(lName);
 		
-		String[] dobArr = dob_raw.split("\\/");
-		
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.YEAR, Integer.parseInt(dobArr[2]));
-		cal.set(Calendar.MONTH, Integer.parseInt(dobArr[0])-1);
-		cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dobArr[1]));
-		
-		java.util.Date dob = cal.getTime();
-				
-		m.setDob(dob);
-		
-		m.setGender(Gender.valueOf(gender));
-		
+		ls.addLibrarianToLibrary(l.getId().toString(), lId);
+
 		//p.setFLIGHTCLASS(FlightClass.Coach);
 		
-		System.out.println(m);
+		System.out.println(l);
 		
-		ms.addMember(m);
+		ls.addLibrarian(l);
 		
-		response.sendRedirect("Members");
+		response.sendRedirect("Librarians");
 	}
 
 }

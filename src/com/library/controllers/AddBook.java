@@ -1,6 +1,5 @@
 package com.library.controllers;
 
-
 import java.io.IOException;
 import java.sql.Date;
 import java.util.Calendar;
@@ -12,22 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.library.models.Gender;
-import com.library.models.Member;
-import com.library.service.MemberService;
+import com.library.models.Book;
+import com.library.models.JoinColumn;
+import com.library.models.Library;
+import com.library.models.ManyToOne;
+
 /**
  * Servlet implementation class AddPassenger
  */
-@WebServlet("/AddMember")
-public class AddMember extends HttpServlet {
+@WebServlet("/AddBook")
+public class AddBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
-	MemberService ms;
+	BookService bs;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddMember() {
+    public AddBook() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,36 +45,24 @@ public class AddMember extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String fName = request.getParameter("first_name");
-		String lName = request.getParameter("last_name");
-		String dob_raw = request.getParameter("dob");
-		String gender = request.getParameter("gender");		
+
+		String title = request.getParameter("title");
+		String author = request.getParameter("author");
+		String publisher = request.getParameter("publisher");
+		String libraryId = request.getParameter("library_id");
+		Book b = new Book();
 		
-		Member m = new Member();
+		b.setTitle(title);
+		b.setAuthor(author);
+		b.setPublisher(publisher);
 		
-		m.setFirstName(fName);
-		m.setLastName(lName);
+		bs.addLibrarianToLibrary(b.getId().toString(), libraryId);
 		
-		String[] dobArr = dob_raw.split("\\/");
+		System.out.println(b);
 		
-		Calendar cal = Calendar.getInstance();
-		cal.set(Calendar.YEAR, Integer.parseInt(dobArr[2]));
-		cal.set(Calendar.MONTH, Integer.parseInt(dobArr[0])-1);
-		cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dobArr[1]));
+		bs.addMember(b);
 		
-		java.util.Date dob = cal.getTime();
-				
-		m.setDob(dob);
-		
-		m.setGender(Gender.valueOf(gender));
-		
-		//p.setFLIGHTCLASS(FlightClass.Coach);
-		
-		System.out.println(m);
-		
-		ms.addMember(m);
-		
-		response.sendRedirect("Members");
+		response.sendRedirect("Books");
 	}
 
 }
