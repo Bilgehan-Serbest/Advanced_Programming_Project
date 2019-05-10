@@ -1,8 +1,8 @@
 package com.library.controllers;
 
+
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,23 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.library.models.Library;
-import com.library.service.LibraryService;
+import com.library.models.Gender;
+import com.library.models.Librarian;
+import com.library.models.Member;
+import com.library.service.LibrarianService;
 
 /**
- * Servlet implementation class AddFlight
+ * Servlet implementation class AddPilot
  */
-@WebServlet("/AddLibrary")
-public class AddLibrary extends HttpServlet {
+@WebServlet("/AddLibarian")
+public class AddLibarian extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	@EJB
+	LibrarianService ls;
     /**
      * @see HttpServlet#HttpServlet()
      */
-	
-	@EJB
-	LibraryService ls;
-    public AddLibrary() {
+    public AddLibarian() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +36,11 @@ public class AddLibrary extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Librarian l = new Librarian();
+		l.setFirstName("Griselda");
+		l.setLastName("Cavendish");
+		
+		ls.addLibrarian(l);
 		
 	}
 
@@ -43,19 +48,26 @@ public class AddLibrary extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Library l = new Library();
+		// TODO Auto-generated method stub
+		//doGet(request, response);
+		String fName = request.getParameter("first_name");
+		String lName = request.getParameter("last_name");
+		String lId = request.getParameter("library_id");
 		
-		String name = request.getParameter("name");
+		Librarian l = new Librarian();
 		
-		l.setName(name);
+		l.setFirstName(fName);
+		l.setLastName(lName);
 		
-		String address = request.getParameter("address");
+		ls.addLibrarianToLibrary(l.getId().toString(), lId);
+
+		//p.setFLIGHTCLASS(FlightClass.Coach);
 		
-		l.setAddress(address);
+		System.out.println(l);
 		
-		ls.addLibrary(l);
+		ls.addLibrarian(l);
 		
-		response.sendRedirect("Libraries");
+		response.sendRedirect("Librarians");
 	}
 
 }

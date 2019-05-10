@@ -1,8 +1,8 @@
 package com.library.controllers;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Calendar;
-import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,23 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.library.models.Book;
+import com.library.models.JoinColumn;
 import com.library.models.Library;
-import com.library.service.LibraryService;
+import com.library.models.ManyToOne;
 
 /**
- * Servlet implementation class AddFlight
+ * Servlet implementation class AddPassenger
  */
-@WebServlet("/AddLibrary")
-public class AddLibrary extends HttpServlet {
+@WebServlet("/AddBook")
+public class AddBook extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	@EJB
+	BookService bs;
     /**
      * @see HttpServlet#HttpServlet()
      */
-	
-	@EJB
-	LibraryService ls;
-    public AddLibrary() {
+    public AddBook() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,25 +38,31 @@ public class AddLibrary extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Library l = new Library();
+
+		String title = request.getParameter("title");
+		String author = request.getParameter("author");
+		String publisher = request.getParameter("publisher");
+		String libraryId = request.getParameter("library_id");
+		Book b = new Book();
 		
-		String name = request.getParameter("name");
+		b.setTitle(title);
+		b.setAuthor(author);
+		b.setPublisher(publisher);
 		
-		l.setName(name);
+		bs.addLibrarianToLibrary(b.getId().toString(), libraryId);
 		
-		String address = request.getParameter("address");
+		System.out.println(b);
 		
-		l.setAddress(address);
+		bs.addMember(b);
 		
-		ls.addLibrary(l);
-		
-		response.sendRedirect("Libraries");
+		response.sendRedirect("Books");
 	}
 
 }
