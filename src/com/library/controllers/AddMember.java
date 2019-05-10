@@ -14,12 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.library.models.Gender;
 import com.library.models.Member;
+import com.library.service.MemberService;
 
 /**
  * Servlet implementation class AddPassenger
  */
 @WebServlet("/AddMember")
-public class AddPassenger extends HttpServlet {
+public class AddMember extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB
@@ -71,7 +72,7 @@ public class AddPassenger extends HttpServlet {
 		
 		System.out.println(m);
 		
-		ms.addMemberassenger(m);
+		ms.addMember(m);
 		
 		response.sendRedirect("Members");
 	}

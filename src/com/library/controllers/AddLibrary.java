@@ -18,7 +18,7 @@ import com.library.service.LibraryService;
  * Servlet implementation class AddFlight
  */
 @WebServlet("/AddLibrary")
-public class AddFlight extends HttpServlet {
+public class AddLibrary extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
