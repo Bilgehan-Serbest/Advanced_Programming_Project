@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
-@NamedQuery(name = "Library.findById", query="SELECT l FROM Library l WHERE l.id =:id")
+@NamedQuery(name = "LIBRARY.findById", query="SELECT l FROM LIBRARY l WHERE l.ID =:ID")
 @Entity
 public class LIBRARY implements Serializable{
 
@@ -34,15 +34,15 @@ public class LIBRARY implements Serializable{
 	
 	private String ADDRESS;
 	
-	@OneToMany(mappedBy="libraryOfBook", cascade= {CascadeType.REMOVE})	
+	@OneToMany(mappedBy="LIBRARYOFBOOK", cascade= {CascadeType.REMOVE})	
 	private List<BOOK> BOOKS;
 	
 	@ManyToMany
 	@JoinTable(name="l_m_join", joinColumns=@JoinColumn(name = "library_fk"), inverseJoinColumns=@JoinColumn(name="member_fk"))
-	private List<MEMBER> members;
+	private List<MEMBER> MEMBERS;
 	
-	@OneToMany(mappedBy="libraryOfLibrarian", cascade= {CascadeType.REMOVE})
-	private List<LIBRARIAN> librarians;
+	@OneToMany(mappedBy="LIBRARYOFLIBRARIAN", cascade= {CascadeType.REMOVE})
+	private List<LIBRARIAN> LIBRARIANS;
 
 	public Integer getID() {
 		return ID;
@@ -88,14 +88,16 @@ public class LIBRARY implements Serializable{
 		return BOOKS;
 	}
 
-	public void setBooks(List<BOOK> bOOKS) {
+	public void setBOOKS(List<BOOK> bOOKS) {
 		this.BOOKS = bOOKS;
 	}
 
 	@Override
 	public String toString() {
-		return "Library [id=" + id + ", name=" + name + ", address=" + address + ", books=" + books + ", members="
-				+ members + ", librarians=" + librarians + "]";
+		return "LIBRARY [ID=" + ID + ", NAME=" + NAME + ", ADDRESS=" + ADDRESS + ", BOOKS=" + BOOKS + ", MEMBERS="
+				+ MEMBERS + ", LIBRARIANS=" + LIBRARIANS + "]";
 	}
+
+
 	
 }

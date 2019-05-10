@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
-@NamedQuery(name="Book.findById", query="SELECT b FROM Book b WHERE b.id = :id")
+@NamedQuery(name="BOOK.findById", query="SELECT b FROM BOOK b WHERE b.ID = :ID")
 @Entity
 public class BOOK implements Serializable{
 private static final long serialVersionUID = 1L;
@@ -37,22 +37,6 @@ private static final long serialVersionUID = 1L;
 	@ManyToOne
 	@JoinColumn(name="member_fk")
 	private MEMBER MEMBEROFBOOK;
-
-	public LIBRARY getLIBRARYOFBOOK() {
-		return LIBRARYOFBOOK;
-	}
-
-	public void setLIBRARYOFBOOK(LIBRARY lIBRARYOFBOOK) {
-		LIBRARYOFBOOK = lIBRARYOFBOOK;
-	}
-
-	public MEMBER getMEMBEROFBOOK() {
-		return MEMBEROFBOOK;
-	}
-
-	public void setMEMBEROFBOOK(MEMBER mEMBEROFBOOK) {
-		MEMBEROFBOOK = mEMBEROFBOOK;
-	}
 
 	public Integer getID() {
 		return ID;
@@ -86,10 +70,28 @@ private static final long serialVersionUID = 1L;
 		PUBLISHER = pUBLISHER;
 	}
 
-	
+	public LIBRARY getLIBRARYOFBOOK() {
+		return LIBRARYOFBOOK;
+	}
 
+	public void setLIBRARYOFBOOK(LIBRARY lIBRARYOFBOOK) {
+		LIBRARYOFBOOK = lIBRARYOFBOOK;
+	}
 
-	
+	public MEMBER getMEMBEROFBOOK() {
+		return MEMBEROFBOOK;
+	}
+
+	public void setMEMBEROFBOOK(MEMBER mEMBEROFBOOK) {
+		MEMBEROFBOOK = mEMBEROFBOOK;
+	}
+
+//	@Override
+//	public String toString() {
+//		return "BOOK [ID=" + ID + ", TITLE=" + TITLE + ", AUTHOR=" + AUTHOR + ", PUBLISHER=" + PUBLISHER
+//				+ ", LIBRARYOFBOOK=" + LIBRARYOFBOOK + ", MEMBEROFBOOK=" + MEMBEROFBOOK + "]";
+//	}
+
 	
 
 }

@@ -40,8 +40,8 @@ public class LendBookToMember extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberId = request.getParameter("member_id");
-		String bookId = request.getParameter("book_id");
+		String memberId = request.getParameter("lendMemberId");
+		String bookId = request.getParameter("lendBookId");
 		
 		ms.lendBookToMember(bookId, memberId);
 		

@@ -1,34 +1,36 @@
 package com.library.controllers;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.Calendar;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.library.models.BOOK;
 import com.library.models.LIBRARY;
+import com.library.models.MEMBER;
 import com.library.service.LibraryService;
-
+import com.library.service.MemberService;
 
 /**
- * Servlet implementation class AddPassenger
+ * Servlet implementation class Libraries
  */
-@WebServlet("/CreateBookAndAddToLibrary")
-public class AddBook extends HttpServlet {
+@WebServlet("/Libraries")
+public class Libraries extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
+	
 	@EJB
 	LibraryService ls;
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddBook() {
+    public Libraries() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,41 +39,25 @@ public class AddBook extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<LIBRARY> lryList = (List<LIBRARY>) ls.getLibraries();
 		
+		request.setAttribute("library_list", lryList);
 		
+		PrintWriter out = response.getWriter();
+		
+		out.println("Here the library list will be displayed");
+		
+		RequestDispatcher view = request.getRequestDispatcher("WEB-INF/views/library_list.jsp");
+		
+		view.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String title = request.getParameter("bookTitle");
-		String author = request.getParameter("bookAuthor");
-		String publisher = request.getParameter("bookPublisher");
-		String libraryId = request.getParameter("bookLibraryId");
-		
-		System.out.println(title);
-		System.out.println(author);
-		System.out.println(publisher);
-		System.out.println(libraryId);
-		
-		BOOK b = new BOOK();
-		
-		b.setTITLE(title);
-		b.setAUTHOR(author);
-		b.setPUBLISHER(publisher);		
-		
-//		System.out.println(b.getTITLE());
-//		System.out.println(b.getAUTHOR());
-//		System.out.println(b.getPUBLISHER());
-//		System.out.println(b.getLIBRARYOFBOOK().getID());
-		
-		ls.addBookToLibrary(b, libraryId);
-		
-		System.out.println(b);
-					
-		response.sendRedirect("Books");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

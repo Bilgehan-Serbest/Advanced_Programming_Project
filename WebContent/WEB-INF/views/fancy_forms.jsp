@@ -67,9 +67,9 @@
 	<form method="POST" action="AddLibrary">		
 		<h2>Add New Library</h2>
 		<br/>
-		<input class="form-control" name="libName" type="text" placeholder="Library Name"></input>
+		<input class="form-control" name="libraryName" type="text" placeholder="Library Name"></input>
 		<br />		
-		 <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" name="libAdr" rows="2" placeholder="Library Address"></textarea>		
+		 <textarea class="form-control z-depth-1" name="libraryAddress" rows="2" placeholder="Library Address"></textarea>		
 		<br />			
 		<button class="btn btn-secondary btn-sm" name="submit">Add Library</button>				
 	</form>	
@@ -127,7 +127,7 @@
 		
 	</form>
 	
-	<form method="post" action="IssueBookToMember">
+	<form method="post" action="LendBookToMember">
 		<h2>Lend Book to Member</h2>
 		<input class="form-control" name="lendMemberId" type="text" placeholder="Member Id"></input>
 		<br />

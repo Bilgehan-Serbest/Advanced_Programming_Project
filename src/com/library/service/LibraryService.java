@@ -12,10 +12,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import com.library.models.Book;
-import com.library.models.Librarian;
-import com.library.models.Library;
-import com.library.models.Member;
+import com.library.models.BOOK;
+import com.library.models.LIBRARIAN;
+import com.library.models.LIBRARY;
+import com.library.models.MEMBER;
 
 /**
  * Session Bean implementation class LibraryService
@@ -34,55 +34,48 @@ public class LibraryService {
     @PersistenceContext(unitName="librarymanagement")
     EntityManager em;
 
-    public void addLibrary(Library l) {
+    public LIBRARY addLibrary(LIBRARY l) {
     	em.persist(l);    	
+    	return l;
     }
 
-  public void addLibrarianToLibrary(String librarianId, String libraryId) {
+  public void addLibrarianToLibrary(LIBRARIAN lrn, String libraryId) {
     	
-    	TypedQuery<Library> lryQuery = em.createNamedQuery("Library.findById", Library.class);
+    	TypedQuery<LIBRARY> lryQuery = em.createNamedQuery("LIBRARY.findById", LIBRARY.class);
     	
-    	lryQuery.setParameter("id", Integer.parseInt(libraryId));
+    	lryQuery.setParameter("ID", Integer.parseInt(libraryId));
     	
-    	Library lry = lryQuery.getSingleResult();
+    	LIBRARY lry = lryQuery.getSingleResult();
     	
-    	TypedQuery<Librarian> lrnQuery = em.createNamedQuery("Librarian.findById", Librarian.class);
+    	em.persist(lrn);
     	
-    	lrnQuery.setParameter("id", Integer.parseInt(librarianId));
-    	
-    	Librarian lrn = lrnQuery.getSingleResult();
-    	
-    	List<Librarian> lrnList = lry.getLibrarians();
+    	List<LIBRARIAN> lrnList = lry.getLIBRARIANS();
     	
     	lrnList.add(lrn);
     	
-    	lry.setLibrarians(lrnList);
+    	lry.setLIBRARIANS(lrnList);
     	
-    	lrn.setLibraryOfLibrarian(lry);
+    	lrn.setLIBRARYOFLIBRARIAN(lry);
     	
     }
   
-  public void addBookToLibrary(String bookId, String libraryId) {
+  public void addBookToLibrary(BOOK b, String libraryId) {
   	
-		TypedQuery<Library> lryQuery = em.createNamedQuery("Library.findById", Library.class);
+		TypedQuery<LIBRARY> lryQuery = em.createNamedQuery("LIBRARY.findById", LIBRARY.class);
 		
-		lryQuery.setParameter("id", Integer.parseInt(libraryId));
+		lryQuery.setParameter("ID", Integer.parseInt(libraryId));
 		
-		Library lry = lryQuery.getSingleResult();
+		LIBRARY lry = lryQuery.getSingleResult();
+			
+		em.persist(b);
 		
-		TypedQuery<Book> bQuery = em.createNamedQuery("Book.findById", Book.class);
-		
-		bQuery.setParameter("id", Integer.parseInt(bookId));
-		
-		Book b = bQuery.getSingleResult();
-		
-		List<Book> bList = lry.getBooks();
+		List<BOOK> bList = lry.getBOOKS();
 		
 		bList.add(b);
 		
-		lry.setBooks(bList);
+		lry.setBOOKS(bList);
 		
-		b.setLibraryOfBook(lry);
+		b.setLIBRARYOFBOOK(lry);
   	
   }
   
@@ -90,40 +83,40 @@ public class LibraryService {
   	
 	  	// Getting the member by id
 	  	CriteriaBuilder builder = em.getCriteriaBuilder();
-	  	CriteriaQuery<Member> cqMember = builder.createQuery(Member.class);
-	  	Root<Member> mRoot = cqMember.from(Member.class);
-	  	cqMember.select(mRoot).where(builder.equal(mRoot.get("id").as(Integer.class), memberId));
-	  	TypedQuery<Member> mQuery = em.createQuery(cqMember);
-	  	Member m = mQuery.getSingleResult();
+	  	CriteriaQuery<MEMBER> cqMember = builder.createQuery(MEMBER.class);
+	  	Root<MEMBER> mRoot = cqMember.from(MEMBER.class);
+	  	cqMember.select(mRoot).where(builder.equal(mRoot.get("ID").as(Integer.class), memberId));
+	  	TypedQuery<MEMBER> mQuery = em.createQuery(cqMember);
+	  	MEMBER m = mQuery.getSingleResult();
 	  	
 	  	// Getting the library by id
 	  	builder = em.getCriteriaBuilder();
-	  	CriteriaQuery<Library> cqLibrary = builder.createQuery(Library.class);
-	  	Root<Library> lRoot = cqLibrary.from(Library.class);
-	  	cqLibrary.select(lRoot).where(builder.equal(lRoot.get("id").as(Integer.class), libraryId));
-	  	TypedQuery<Library> lQuery = em.createQuery(cqLibrary);
-	  	Library l = lQuery.getSingleResult();
+	  	CriteriaQuery<LIBRARY> cqLibrary = builder.createQuery(LIBRARY.class);
+	  	Root<LIBRARY> lRoot = cqLibrary.from(LIBRARY.class);
+	  	cqLibrary.select(lRoot).where(builder.equal(lRoot.get("ID").as(Integer.class), libraryId));
+	  	TypedQuery<LIBRARY> lQuery = em.createQuery(cqLibrary);
+	  	LIBRARY l = lQuery.getSingleResult();
 	  	
-	  	List<Member> mList = l.getMembers();
+	  	List<MEMBER> mList = l.getMEMBERS();
 	  	mList.add(m);
-	  	l.setMembers(mList);
-	  	m.getLibraries().add(l);
+	  	l.setMEMBERS(mList);
+	  	m.getLIBRARIES().add(l);
 	  	
   }
   
-  public List<Library> getLibraries(){
-	  	TypedQuery<Library> query = em.createQuery("SELECT l FROM Library l", Library.class);    	
-	  	List<Library> results = query.getResultList();
+  public List<LIBRARY> getLibraries(){
+	  	TypedQuery<LIBRARY> query = em.createQuery("SELECT l FROM LIBRARY l", LIBRARY.class);    	
+	  	List<LIBRARY> results = query.getResultList();
 	  	return results;
   }
   
-  public Library getLibrary(Integer libraryId) {
+  public LIBRARY getLibrary(Integer libraryId) {
   	
-	  	TypedQuery<Library> lQuery = em.createNamedQuery("Library.findById", Library.class);
+	  	TypedQuery<LIBRARY> lQuery = em.createNamedQuery("LIBRARY.findById", LIBRARY.class);
 	  	
 	  	lQuery.setParameter("id", libraryId);
 	  	
-	  	Library l = null;
+	  	LIBRARY l = null;
 	  	
 	  	try {
 	  		l = lQuery.getSingleResult();

@@ -18,7 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-@NamedQuery(name="Member.findById", query="SELECT m FROM Member m WHERE m.id = :id")
+@NamedQuery(name="MEMBER.findById", query="SELECT m FROM MEMBER m WHERE m.ID = :ID")
 @Entity
 public class MEMBER implements Serializable{
 private static final long serialVersionUID = 1L;
@@ -39,12 +39,12 @@ private static final long serialVersionUID = 1L;
 	private Date DOB;
 	
 	@Enumerated(EnumType.STRING)
-	private GENDER GENDER;
+	private Gender GENDER;
 	
-	@ManyToMany(mappedBy = "members")
+	@ManyToMany(mappedBy = "MEMBERS")
 	private List<LIBRARY> LIBRARIES;
 	
-	@OneToMany(mappedBy="memberOfBook", cascade= {CascadeType.REMOVE})
+	@OneToMany(mappedBy="MEMBEROFBOOK", cascade= {CascadeType.REMOVE})
 	private List<BOOK> BOOKS;
 
 
@@ -88,12 +88,12 @@ private static final long serialVersionUID = 1L;
 	}
 
 
-	public GENDER getGENDER() {
+	public Gender getGENDER() {
 		return GENDER;
 	}
 
 
-	public void setGENDER(GENDER gENDER) {
+	public void setGENDER(Gender gENDER) {
 		GENDER = gENDER;
 	}
 

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.library.models.Library;
+import com.library.models.LIBRARY;
 import com.library.service.LibraryService;
 
 /**
@@ -43,15 +43,19 @@ public class AddLibrary extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Library l = new Library();
+				
+		String name = request.getParameter("libraryName");
 		
-		String name = request.getParameter("name");
+		String address = request.getParameter("libraryAddress");
 		
-		l.setName(name);
+		System.out.println(name);
+		System.out.println(address);
 		
-		String address = request.getParameter("address");
+		LIBRARY l = new LIBRARY();
 		
-		l.setAddress(address);
+		l.setNAME(name);
+		
+		l.setADDRESS(address);
 		
 		ls.addLibrary(l);
 		

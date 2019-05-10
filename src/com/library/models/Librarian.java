@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
-@NamedQuery(name="Librarian.findById", query="SELECT l FROM Librarian l WHERE l.id = :id")
+@NamedQuery(name="LIBRARIAN.findById", query="SELECT l FROM LIBRARIAN l WHERE l.ID = :id")
 @Entity
 public class LIBRARIAN implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -30,9 +30,6 @@ public class LIBRARIAN implements Serializable{
 	public Integer getID() {
 		return ID;
 	}
-
-
-
 
 	public void setID(Integer iD) {
 		ID = iD;
@@ -87,11 +84,11 @@ public class LIBRARIAN implements Serializable{
 	
 
 
-	@Override
-	public String toString() {
-		return "Librarian [id=" + ID + ", firstName=" + FIRSTNAME + ", lastName=" + LASTNAME + ", libraryOfLibrarian="
-				+ LIBRARYOFLIBRARIAN + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Librarian [id=" + ID + ", firstName=" + FIRSTNAME + ", lastName=" + LASTNAME + ", libraryOfLibrarian="
+//				+ LIBRARYOFLIBRARIAN + "]";
+//	}
 	
 	
 }

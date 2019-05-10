@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.library.models.Gender;
-import com.library.models.Member;
+import com.library.models.MEMBER;
 import com.library.service.MemberService;
 /**
  * Servlet implementation class AddPassenger
@@ -49,10 +49,10 @@ public class AddMember extends HttpServlet {
 		String dob_raw = request.getParameter("memberDob");
 		String gender = request.getParameter("gender");		
 		
-		Member m = new Member();
+		MEMBER m = new MEMBER();
 		
-		m.setFirstName(fName);
-		m.setLastName(lName);
+		m.setFIRSTNAME(fName);
+		m.setLASTNAME(lName);
 		
 		String[] dobArr = dob_raw.split("\\/");
 		
@@ -63,9 +63,9 @@ public class AddMember extends HttpServlet {
 		
 		java.util.Date dob = cal.getTime();
 				
-		m.setDob(dob);
+		m.setDOB(dob);
 		
-		m.setGender(Gender.valueOf(gender));
+		m.setGENDER(Gender.valueOf(gender));
 		
 		//p.setFLIGHTCLASS(FlightClass.Coach);
 		

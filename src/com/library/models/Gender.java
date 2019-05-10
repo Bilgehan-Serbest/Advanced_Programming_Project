@@ -1,6 +1,6 @@
 package com.library.models;
 
-public enum GENDER {
+public enum Gender {
 	Female,
 	Male
 }
