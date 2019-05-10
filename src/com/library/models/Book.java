@@ -13,85 +13,80 @@ import javax.persistence.OneToOne;
 
 @NamedQuery(name="Book.findById", query="SELECT b FROM Book b WHERE b.id = :id")
 @Entity
-public class Book implements Serializable{
+public class BOOK implements Serializable{
 private static final long serialVersionUID = 1L;
 	
-	public Book() {
+	public BOOK() {
 		super();
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer ID;
 	
-	private String title;
+	private String TITLE;
 	
-	private String author;
+	private String AUTHOR;
 	
-	private String publisher;
+	private String PUBLISHER;
 		
 	@ManyToOne
 	@JoinColumn(name="library_fk")
-	private Library libraryOfBook;
+	private LIBRARY LIBRARYOFBOOK;
 	
 	@ManyToOne
 	@JoinColumn(name="member_fk")
-	private Member memberOfBook;
+	private MEMBER MEMBEROFBOOK;
 
-	public Integer getId() {
-		return id;
+	public LIBRARY getLIBRARYOFBOOK() {
+		return LIBRARYOFBOOK;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setLIBRARYOFBOOK(LIBRARY lIBRARYOFBOOK) {
+		LIBRARYOFBOOK = lIBRARYOFBOOK;
 	}
 
-	public String getTitle() {
-		return title;
+	public MEMBER getMEMBEROFBOOK() {
+		return MEMBEROFBOOK;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setMEMBEROFBOOK(MEMBER mEMBEROFBOOK) {
+		MEMBEROFBOOK = mEMBEROFBOOK;
 	}
 
-	public String getAuthor() {
-		return author;
+	public Integer getID() {
+		return ID;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setID(Integer iD) {
+		ID = iD;
 	}
 
-	public String getPublisher() {
-		return publisher;
+	public String getTITLE() {
+		return TITLE;
 	}
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
+	public void setTITLE(String tITLE) {
+		TITLE = tITLE;
 	}
 
-
-	public Member getMemberOfBook() {
-		return memberOfBook;
+	public String getAUTHOR() {
+		return AUTHOR;
 	}
 
-	public void setMemberOfBook(Member memberOfBook) {
-		this.memberOfBook = memberOfBook;
+	public void setAUTHOR(String aUTHOR) {
+		AUTHOR = aUTHOR;
 	}
 
-	public Library getLibraryOfBook() {
-		return libraryOfBook;
+	public String getPUBLISHER() {
+		return PUBLISHER;
 	}
 
-	public void setLibraryOfBook(Library libraryOfBook) {
-		this.libraryOfBook = libraryOfBook;
+	public void setPUBLISHER(String pUBLISHER) {
+		PUBLISHER = pUBLISHER;
 	}
 
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publisher=" + publisher
-				+ ", libraryOfBook=" + libraryOfBook + ", memberOfBook=" + memberOfBook + "]";
-	}
+	
 
 
 	

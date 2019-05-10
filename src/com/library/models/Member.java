@@ -20,93 +20,108 @@ import javax.persistence.TemporalType;
 
 @NamedQuery(name="Member.findById", query="SELECT m FROM Member m WHERE m.id = :id")
 @Entity
-public class Member implements Serializable{
+public class MEMBER implements Serializable{
 private static final long serialVersionUID = 1L;
 	
-	public Member() {
+	public MEMBER() {
 		super();
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer ID;
 	
-	private String firstName;
+	private String FIRSTNAME;
 	
-	private String lastName;
+	private String LASTNAME;
 	
 	@Temporal(TemporalType.DATE)
-	private Date dob;
+	private Date DOB;
 	
 	@Enumerated(EnumType.STRING)
-	private Gender gender;
+	private GENDER GENDER;
 	
 	@ManyToMany(mappedBy = "members")
-	private List<Library> libraries;
+	private List<LIBRARY> LIBRARIES;
 	
 	@OneToMany(mappedBy="memberOfBook", cascade= {CascadeType.REMOVE})
-	private List<Book> books;
+	private List<BOOK> BOOKS;
 
-	public Integer getId() {
-		return id;
+
+	public Integer getID() {
+		return ID;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+
+	public void setID(Integer iD) {
+		ID = iD;
 	}
 
-	public String getFirstName() {
-		return firstName;
+
+	public String getFIRSTNAME() {
+		return FIRSTNAME;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+
+	public void setFIRSTNAME(String fIRSTNAME) {
+		FIRSTNAME = fIRSTNAME;
 	}
 
-	public String getLastName() {
-		return lastName;
+
+	public String getLASTNAME() {
+		return LASTNAME;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+	public void setLASTNAME(String lASTNAME) {
+		LASTNAME = lASTNAME;
 	}
 
-	public Date getDob() {
-		return dob;
+
+	public Date getDOB() {
+		return DOB;
 	}
 
-	public void setDob(Date dob) {
-		this.dob = dob;
+
+	public void setDOB(Date dOB) {
+		this.DOB = dOB;
 	}
 
-	public Gender getGender() {
-		return gender;
+
+	public GENDER getGENDER() {
+		return GENDER;
 	}
 
-	public void setGender(Gender gender) {
-		this.gender = gender;
+
+	public void setGENDER(GENDER gENDER) {
+		GENDER = gENDER;
 	}
 
-	public List<Library> getLibraries() {
-		return libraries;
+
+	public List<LIBRARY> getLIBRARIES() {
+		return LIBRARIES;
 	}
 
-	public void setLibraries(List<Library> libraries) {
-		this.libraries = libraries;
+
+	public void setLIBRARIES(List<LIBRARY> lIBRARIES) {
+		LIBRARIES = lIBRARIES;
 	}
 
-	public List<Book> getBooks() {
-		return books;
+
+	public List<BOOK> getBOOKS() {
+		return BOOKS;
 	}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
+
+	public void setBOOKS(List<BOOK> bOOKS) {
+		BOOKS = bOOKS;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", dob=" + dob + ", gender="
-				+ gender + ", libraries=" + libraries + ", books=" + books + "]";
+		return "Member [id=" + ID + ", firstName=" + FIRSTNAME + ", lastName=" + LASTNAME + ", dob=" + DOB + ", gender="
+				+ GENDER + ", libraries=" + LIBRARIES + ", books=" + BOOKS + "]";
 	}
 	
 	

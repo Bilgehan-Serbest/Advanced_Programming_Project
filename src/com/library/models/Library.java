@@ -18,78 +18,78 @@ import javax.persistence.OneToOne;
 
 @NamedQuery(name = "Library.findById", query="SELECT l FROM Library l WHERE l.id =:id")
 @Entity
-public class Library implements Serializable{
+public class LIBRARY implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	public Library() {
+	public LIBRARY() {
 		super();
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer ID;
 	
-	private String name;
+	private String NAME;
 	
-	private String address;
+	private String ADDRESS;
 	
 	@OneToMany(mappedBy="libraryOfBook", cascade= {CascadeType.REMOVE})	
-	private List<Book> books;
+	private List<BOOK> BOOKS;
 	
 	@ManyToMany
 	@JoinTable(name="l_m_join", joinColumns=@JoinColumn(name = "library_fk"), inverseJoinColumns=@JoinColumn(name="member_fk"))
-	private List<Member> members;
+	private List<MEMBER> members;
 	
 	@OneToMany(mappedBy="libraryOfLibrarian", cascade= {CascadeType.REMOVE})
-	private List<Librarian> librarians;
+	private List<LIBRARIAN> librarians;
 
-	public Integer getId() {
-		return id;
+	public Integer getID() {
+		return ID;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setID(Integer iD) {
+		this.ID = iD;
 	}
 
-	public String getName() {
-		return name;
+	public String getNAME() {
+		return NAME;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNAME(String nAME) {
+		this.NAME = nAME;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getADDRESS() {
+		return ADDRESS;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setADDRESS(String aDDRESS) {
+		this.ADDRESS = aDDRESS;
 	}
 
-	public List<Member> getMembers() {
-		return members;
+	public List<MEMBER> getMEMBERS() {
+		return MEMBERS;
 	}
 
-	public void setMembers(List<Member> members) {
-		this.members = members;
+	public void setMEMBERS(List<MEMBER> mEMBERS) {
+		this.MEMBERS = mEMBERS;
 	}
 
-	public List<Librarian> getLibrarians() {
-		return librarians;
+	public List<LIBRARIAN> getLIBRARIANS() {
+		return LIBRARIANS;
 	}
 
-	public void setLibrarians(List<Librarian> librarians) {
-		this.librarians = librarians;
+	public void setLIBRARIANS(List<LIBRARIAN> lIBRARIANS) {
+		this.LIBRARIANS = lIBRARIANS;
 	}
 
-	public List<Book> getBooks() {
-		return books;
+	public List<BOOK> getBOOKS() {
+		return BOOKS;
 	}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	public void setBooks(List<BOOK> bOOKS) {
+		this.BOOKS = bOOKS;
 	}
 
 	@Override

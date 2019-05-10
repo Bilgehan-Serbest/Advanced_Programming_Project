@@ -12,61 +12,85 @@ import javax.persistence.NamedQuery;
 
 @NamedQuery(name="Librarian.findById", query="SELECT l FROM Librarian l WHERE l.id = :id")
 @Entity
-public class Librarian implements Serializable{
+public class LIBRARIAN implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	public Librarian() {
+	public LIBRARIAN() {
 		super();
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Integer ID;
 	
-	private String firstName;
+	private String FIRSTNAME;
 	
-	private String lastName;
+	private String LASTNAME;
 	
+	public Integer getID() {
+		return ID;
+	}
+
+
+
+
+	public void setID(Integer iD) {
+		ID = iD;
+	}
+
+
+
+
+	public String getFIRSTNAME() {
+		return FIRSTNAME;
+	}
+
+
+
+
+	public void setFIRSTNAME(String fIRSTNAME) {
+		FIRSTNAME = fIRSTNAME;
+	}
+
+
+
+
+	public String getLASTNAME() {
+		return LASTNAME;
+	}
+
+
+
+
+	public void setLASTNAME(String lASTNAME) {
+		LASTNAME = lASTNAME;
+	}
+
+
+
+
+	public LIBRARY getLIBRARYOFLIBRARIAN() {
+		return LIBRARYOFLIBRARIAN;
+	}
+
+
+
+
+	public void setLIBRARYOFLIBRARIAN(LIBRARY lIBRARYOFLIBRARIAN) {
+		LIBRARYOFLIBRARIAN = lIBRARYOFLIBRARIAN;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="library_fk")
-	private Library libraryOfLibrarian;
+	private LIBRARY LIBRARYOFLIBRARIAN;
 
-	public Integer getId() {
-		return id;
-	}
+	
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public Library getLibraryOfLibrarian() {
-		return libraryOfLibrarian;
-	}
-
-	public void setLibraryOfLibrarian(Library libraryOfLibrarian) {
-		this.libraryOfLibrarian = libraryOfLibrarian;
-	}
 
 	@Override
 	public String toString() {
-		return "Librarian [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", libraryOfLibrarian="
-				+ libraryOfLibrarian + "]";
+		return "Librarian [id=" + ID + ", firstName=" + FIRSTNAME + ", lastName=" + LASTNAME + ", libraryOfLibrarian="
+				+ LIBRARYOFLIBRARIAN + "]";
 	}
 	
 	
