@@ -64,6 +64,30 @@ public class MemberService {
     	return m;    	
     }    
     
+    public MEMBER updateMember(Integer memberId, MEMBER mUpdated) {
+		
+    	MEMBER m = em.find(MEMBER.class, memberId);
+    	
+    	if(m==null) {
+    		return null;
+    	}
+    	if(mUpdated.getFIRSTNAME() != null) {
+    		m.setFIRSTNAME(mUpdated.getFIRSTNAME());
+    	}
+    	if(mUpdated.getLASTNAME() != null) {
+    		m.setLASTNAME(mUpdated.getLASTNAME());
+    	}
+    	if(mUpdated.getDOB() != null) {
+    		m.setDOB(mUpdated.getDOB());
+    	}
+    	if(mUpdated.getGENDER() != null) {
+    		m.setGENDER(mUpdated.getGENDER());
+    	}
+    	
+    	return m;
+    	
+    }
+    
     public void lendBookToMember(String bookId, String memberId) {
     	// Getting the member by id
     	CriteriaBuilder builder = em.getCriteriaBuilder();

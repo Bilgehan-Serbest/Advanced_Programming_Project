@@ -114,7 +114,7 @@ public class LibraryService {
   	
 	  	TypedQuery<LIBRARY> lQuery = em.createNamedQuery("LIBRARY.findById", LIBRARY.class);
 	  	
-	  	lQuery.setParameter("id", libraryId);
+	  	lQuery.setParameter("ID", libraryId);
 	  	
 	  	LIBRARY l = null;
 	  	
