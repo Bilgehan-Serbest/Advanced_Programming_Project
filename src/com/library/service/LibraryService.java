@@ -38,6 +38,7 @@ public class LibraryService {
     	em.persist(l);    	
     	return l;
     }
+        
 
   public void addLibrarianToLibrary(LIBRARIAN lrn, String libraryId) {
     	
@@ -110,6 +111,7 @@ public class LibraryService {
 	  	return results;
   }
   
+  
   public LIBRARY getLibrary(Integer libraryId) {
   	
 	  	TypedQuery<LIBRARY> lQuery = em.createNamedQuery("LIBRARY.findById", LIBRARY.class);
@@ -125,9 +127,5 @@ public class LibraryService {
 	  	}
 	  	
 	  	return l;
-  }
-  
-  
-  
-    
+  }    
 }

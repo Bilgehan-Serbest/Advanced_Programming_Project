@@ -72,7 +72,7 @@
 						List<LIBRARIAN> lrnList = (List<LIBRARIAN>) lryList.get(i).getLIBRARIANS();
 						for(Integer k=0; k<lrnList.size(); k++){
 				 %>
-					<%= k+1 %>) <%= lrnList.get(k).getFIRSTNAME() %> , <%= lrnList.get(k).getLASTNAME() %> <br />
+					<%= k+1 %>) ID: <%= lrnList.get(k).getID() %> , Name: <%= lrnList.get(k).getFIRSTNAME() %> <%= lrnList.get(k).getLASTNAME() %> <br />
 				 <%
 					 		}
 				 		} else{
